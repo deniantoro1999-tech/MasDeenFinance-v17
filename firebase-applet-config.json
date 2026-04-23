@@ -1,0 +1,10 @@
+{
+  "_comment": "Ganti value di bawah dengan Firebase config Anda. Dapatkan dari: Firebase Console > Project Settings > General > Your apps > SDK setup and configuration",
+  "apiKey": "YOUR_API_KEY_HERE",
+  "authDomain": "YOUR_PROJECT.firebaseapp.com",
+  "projectId": "YOUR_PROJECT_ID",
+  "storageBucket": "YOUR_PROJECT.appspot.com",
+  "messagingSenderId": "YOUR_SENDER_ID",
+  "appId": "YOUR_APP_ID",
+  "firestoreDatabaseId": "(default)"
+}

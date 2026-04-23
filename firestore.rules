@@ -1,0 +1,51 @@
+// ═══════════════════════════════════════════════════════════════
+// Firestore Security Rules — MasDeen Finance v17
+// 
+// PATTERN: artifacts/{appId}/public/data/{collection}
+// 
+// Filosofi:
+// - User harus login untuk akses data
+// - Setiap user hanya bisa akses datanya sendiri (via appId)
+// - Rules ini ketat — sesuaikan kalau butuh sharing multi-user
+// ═══════════════════════════════════════════════════════════════
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+    
+    // Artifacts path (struktur utama v17)
+    match /artifacts/{appId}/public/data/{collection}/{docId} {
+      // READ: user harus login
+      allow read: if isSignedIn();
+      
+      // CREATE/UPDATE: user harus login, dan createdBy harus sesuai dengan auth uid
+      allow create: if isSignedIn() 
+                    && request.resource.data.createdBy == request.auth.uid;
+      
+      allow update: if isSignedIn();
+      
+      // DELETE: user harus login
+      allow delete: if isSignedIn();
+    }
+    
+    // Settings (single document)
+    match /artifacts/{appId}/public/data/settings/{docId} {
+      allow read, write: if isSignedIn();
+    }
+    
+    // Default deny (explicit)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

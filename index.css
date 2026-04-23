@@ -1,0 +1,444 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL VARIABLES & THEME
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer base {
+  :root {
+    --primary: #EAB308;
+    --primary-light: #FEF08A;
+    --primary-dark: #854D0E;
+    --bg-main: #020202;
+    --bg-card: #080808;
+    --text-main: #E2E8F0;
+    --text-muted: #64748B;
+  }
+  
+  body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Text glow effect (signature MasDeen) */
+  .text-glow {
+    text-shadow: 
+      0 0 10px rgba(234, 179, 8, 0.4), 
+      0 0 20px rgba(234, 179, 8, 0.2);
+  }
+  
+  /* Pulsing glow animation */
+  .animate-glow {
+    animation: pulse-glow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from {
+      text-shadow: 
+        0 0 5px rgba(234, 179, 8, 0.3), 
+        0 0 10px rgba(234, 179, 8, 0.15);
+    }
+    to {
+      text-shadow: 
+        0 0 15px rgba(234, 179, 8, 0.6), 
+        0 0 30px rgba(234, 179, 8, 0.3);
+    }
+  }
+  
+  /* Shimmer effect untuk loading */
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg, 
+      rgba(234, 179, 8, 0.1) 0%, 
+      rgba(234, 179, 8, 0.4) 50%, 
+      rgba(234, 179, 8, 0.1) 100%
+    );
+    background-size: 200% auto;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  
+  /* Custom scrollbar — emas tipis */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      to bottom, 
+      rgba(234, 179, 8, 0.2), 
+      rgba(234, 179, 8, 0.4)
+    );
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      to bottom, 
+      rgba(234, 179, 8, 0.4), 
+      rgba(234, 179, 8, 0.6)
+    );
+  }
+  
+  /* Global scrollbar (lebih tipis) */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(234, 179, 8, 0.3);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(234, 179, 8, 0.5);
+  }
+  
+  /* Placeholder color konsisten */
+  input::placeholder, 
+  textarea::placeholder {
+    color: rgba(100, 116, 139, 0.5);
+  }
+  
+  /* Disable spinner di input number */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  /* Line clamp helpers */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME VARIANTS (Dark / Light / Nature)
+   
+   Diaktifkan dengan menambahkan class di <html> atau <body>:
+   - default: dark
+   - .theme-light: light mode
+   - .theme-nature: nature green
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Light theme */
+:root.theme-light, body.theme-light {
+  --primary: #CA8A04;
+  --primary-light: #FEF08A;
+  --primary-dark: #713F12;
+  --bg-main: #FAFAFA;
+  --bg-card: #FFFFFF;
+  --text-main: #18181B;
+  --text-muted: #71717A;
+}
+
+body.theme-light {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Nature theme */
+:root.theme-nature, body.theme-nature {
+  --primary: #10B981;
+  --primary-light: #6EE7B7;
+  --primary-dark: #047857;
+  --bg-main: #0A1F14;
+  --bg-card: #0F2A1D;
+  --text-main: #E2E8F0;
+  --text-muted: #64748B;
+}
+
+body.theme-nature {
+  background: var(--bg-main);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THERMAL RECEIPT PRINT (58mm)
+   
+   Class ".receipt-print-only" di-hide secara default, hanya muncul
+   saat @media print. Class ".no-print" sebaliknya.
+   ═══════════════════════════════════════════════════════════════ */
+
+.receipt-print-only {
+  display: none;
+}
+
+.receipt-thermal {
+  width: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #000;
+  background: #fff;
+}
+
+.receipt-thermal .r-header {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.receipt-thermal .r-header h1 {
+  font-size: 13px;
+  font-weight: 900;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+  word-break: break-word;
+  text-transform: uppercase;
+}
+.receipt-thermal .r-addr {
+  font-size: 8px;
+  margin: 0;
+  line-height: 1.3;
+  white-space: pre-line;
+}
+.receipt-thermal .r-divider {
+  border-top: 1px dashed #000;
+  margin: 6px 0;
+}
+.receipt-thermal .r-divider-thin {
+  border-top: 1px dotted #888;
+  margin: 4px 0;
+}
+.receipt-thermal .r-info,
+.receipt-thermal .r-line {
+  font-size: 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+.receipt-thermal .r-info > div + div {
+  margin-top: 1px;
+}
+
+.receipt-thermal .r-items {
+  margin: 4px 0;
+}
+.receipt-thermal .r-item {
+  margin-bottom: 4px;
+}
+.receipt-thermal .r-item-name {
+  font-weight: 700;
+  font-size: 10px;
+  word-break: break-word;
+}
+.receipt-thermal .r-item-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  padding-left: 4px;
+  gap: 4px;
+}
+.receipt-thermal .r-item-sub {
+  font-weight: 700;
+}
+
+.receipt-thermal .r-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 900;
+  font-size: 12px;
+  margin: 4px 0;
+  align-items: baseline;
+}
+
+.receipt-thermal .r-footer {
+  text-align: center;
+  font-size: 8px;
+  margin-top: 8px;
+  padding-bottom: 8px;
+}
+.receipt-thermal .r-footer p {
+  margin: 0 0 2px 0;
+  line-height: 1.3;
+}
+.receipt-thermal .r-stamp {
+  font-size: 6px !important;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINT MEDIA QUERIES
+   ═══════════════════════════════════════════════════════════════ */
+
+@media print {
+  /* Hide everything except struk */
+  .no-print,
+  body > #root {
+    display: none !important;
+  }
+  
+  /* Show struk */
+  .receipt-print-only {
+    display: block !important;
+    width: 58mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  
+  /* Page setup untuk thermal printer 58mm */
+  @page {
+    size: 58mm auto;
+    margin: 2mm;
+  }
+  
+  /* Reset body/html untuk print */
+  body, html {
+    width: 58mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  
+  /* Disable semua animasi & transform yang break print */
+  * {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY & UX
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Focus ring untuk keyboard navigation */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(234, 179, 8, 0.5);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection on UI buttons */
+button {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Allow selection on text content */
+p, span, div[contenteditable], pre, code {
+  user-select: text;
+}
+
+/* Mobile: prevent zoom on input focus (iOS) */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROSE STYLING (untuk markdown di AIModule)
+   ═══════════════════════════════════════════════════════════════ */
+
+.prose-invert {
+  color: #E2E8F0;
+}
+.prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4 {
+  color: #FBBF24;
+  font-weight: 700;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+.prose-invert h1 { font-size: 1.25em; }
+.prose-invert h2 { font-size: 1.125em; }
+.prose-invert h3 { font-size: 1em; }
+.prose-invert p {
+  margin: 0.5em 0;
+  line-height: 1.6;
+}
+.prose-invert strong {
+  color: #fff;
+  font-weight: 700;
+}
+.prose-invert ul, .prose-invert ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+.prose-invert li {
+  margin: 0.25em 0;
+}
+.prose-invert code {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.125em 0.375em;
+  border-radius: 0.25em;
+  font-size: 0.875em;
+  color: #FBBF24;
+}
+.prose-invert pre {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  padding: 0.75em;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  font-size: 0.875em;
+  margin: 0.75em 0;
+}
+.prose-invert blockquote {
+  border-left: 3px solid rgba(234, 179, 8, 0.5);
+  padding-left: 0.75em;
+  margin: 0.75em 0;
+  font-style: italic;
+  color: #94A3B8;
+}
+.prose-invert a {
+  color: #FBBF24;
+  text-decoration: underline;
+}

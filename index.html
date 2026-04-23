@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#020202" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MasDeen" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="description" content="Super Smart POS & Finance System untuk CV. Timika Jaya Sejahterah - Sistem manajemen keuangan toko rongsok modern." />
+    
+    <!-- Anti-flash: apply theme sebelum React mount -->
+    <style>
+      html, body {
+        background-color: #020202;
+        color: #E2E8F0;
+        margin: 0;
+        padding: 0;
+      }
+      body.theme-light {
+        background-color: #FAFAFA;
+        color: #18181B;
+      }
+      body.theme-nature {
+        background-color: #0A1F14;
+      }
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+    
+    <title>MasDeen Finance — CV. Timika Jaya Sejahterah</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Noscript fallback -->
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: sans-serif;">
+        <h1>MasDeen Finance</h1>
+        <p>Aplikasi ini membutuhkan JavaScript untuk berjalan. Silakan aktifkan JavaScript di browser Anda.</p>
+      </div>
+    </noscript>
+  </body>
+</html>

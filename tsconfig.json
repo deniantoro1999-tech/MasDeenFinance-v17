@@ -23,6 +23,6 @@
     
     "types": ["vite/client"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", ".netlify"]
 }
